@@ -1,0 +1,32 @@
+{:deps
+ {org.clojure/clojure {:mvn/version "1.11.1"}}
+ :paths ["src"]
+
+ :aliases
+ {:test
+  {:extra-deps  {lambdaisland/kaocha          {:mvn/version "1.85.1342"}
+                 com.lambdaisland/kaocha-cljs {:mvn/version "1.4.130"}}
+   :extra-paths ["test"]
+   :exec-fn     kaocha.runner/exec-fn}
+
+  :outdated
+  {:deps      {com.github.liquidz/antq {:mvn/version "RELEASE"}
+               org.slf4j/slf4j-simple  {:mvn/version "2.0.7"}}
+   :main-opts ["-m" "antq.core"]}
+
+  :cljfmt
+  {:deps       {dev.weavejester/cljfmt {:mvn/version "0.11.2"}}
+   :ns-default cljfmt.tool}
+
+  :check
+  {:extra-deps {org.spootnik/deps-check {:mvn/version "0.5.2"}}
+   :ns-default spootnik.deps-check}
+
+  :quickdoc
+  {:deps      {org.babashka/cli {:mvn/version "0.7.52"}
+               io.github.borkdude/quickdoc
+               {:deps/root "jvm"
+                :git/sha   "e4f08eb5b1882cf0bffcbb7370699c0a63c9fd72"}}
+   :exec-args {:github/repo "https://github.com/pyr/rusty-yard"
+               :git/branch  "main"}
+   :main-opts ["-m" "babashka.cli.exec" "quickdoc.api" "quickdoc"]}}}
